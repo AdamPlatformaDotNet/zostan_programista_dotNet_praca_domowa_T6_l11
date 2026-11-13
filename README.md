@@ -70,23 +70,27 @@ INSERT INTO InvoicePositions (InvoiceId, ProductId, Quantity)
 VALUES (2, 3, 30);
 
 -- 5a
+
 SELECT i.Id, c.FirstName, c.LastName
 FROM Invoices i
          LEFT JOIN Clients c ON i.ClientId = c.Id;
 
 -- 5b
+
 SELECT i.Number, p.Name, p.Price
 FROM InvoicePositions ip
          LEFT JOIN Invoices i ON ip.InvoiceId = i.Id
          LEFT JOIN Products p ON ip.ProductId = p.Id;
 
 -- 5c
+
 Select i.Number, sum(ip.Quantity) as [ilosc produktow]
 from Invoices i
          left join InvoicePositions ip on i.Id = ip.InvoiceId
 GROUP BY i.Number;
 
 -- 5d
+
 SELECT i.Number, SUM(p.Price * ip.Quantity) as [suma na fakturze]
 from InvoicePositions ip
          LEFT JOIN Invoices i on I.Id = ip.InvoiceId
